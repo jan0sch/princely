@@ -1,2 +1,15 @@
-*.gem
-tmp
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+# Vim
+.*.sw[a-z]
+*.un~
+Session.vim
+# Windows
+Thumbs.db
+Desktop.ini
