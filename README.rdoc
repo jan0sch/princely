@@ -5,7 +5,8 @@ Princely is a simple wrapper for the Prince XML PDF generation library
 the PDF MimeType so that you can use pdf as a format in controller 
 respond_to blocks.
 
-The behaviour of this fork differs from the original version!
+*The behaviour of this fork differs from the original version!*
+
 Rendering to a string and passing it to prince is no longer done because
 that broke almost all unicode stuff. Now the url for the current controller
 action is passed to prince. Therefore you need to keep sure that this url
