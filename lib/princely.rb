@@ -48,7 +48,7 @@ class Princely
   #
   def exe_path
     # Add any standard cmd line arguments we need to pass
-    @exe_path << " --input=html --server --log=#{@log_file} "
+    @exe_path << " --media=print --javascript --input=xhtml --server --log=#{@log_file} "
     @exe_path << @style_sheets
     return @exe_path
   end
@@ -62,7 +62,7 @@ class Princely
     path = self.exe_path()
     # Don't spew errors to the standard out...and set up to take IO 
     # as input and output
-    path << ' --silent - -o -'
+    path << " --silent #{string} -o -"
     
     # Show the command used...
     logger.info "\n\nPRINCE XML PDF COMMAND"
@@ -70,9 +70,7 @@ class Princely
     logger.info ''
     
     # Actually call the prince command, and pass the entire data stream back.
-    pdf = IO.popen(path, "w+")
-    pdf.puts(string)
-    pdf.close_write
+    pdf = IO.popen(path)
     result = pdf.gets(nil)
     pdf.close_read
     return result
@@ -82,7 +80,7 @@ class Princely
     path = self.exe_path()
     # Don't spew errors to the standard out...and set up to take IO 
     # as input and output
-    path << " --silent - -o '#{output_file}' >> '#{@log_file}' 2>> '#{@log_file}'"
+    path << " --silent '#{string}' -o '#{output_file}' >> '#{@log_file}' 2>> '#{@log_file}'"
     
     # Show the command used...
     logger.info "\n\nPRINCE XML PDF COMMAND"
@@ -90,8 +88,7 @@ class Princely
     logger.info ''
     
     # Actually call the prince command, and pass the entire data stream back.
-    pdf = IO.popen(path, "w+")
-    pdf.puts(string)
+    pdf = IO.popen(path)
     pdf.close
   end
 end
