@@ -23,7 +23,7 @@ is accessible from the prince application.
           format.pdf do
             render :pdf => "file_name", 
                    :template => "controller/action.pdf.erb",
-                   :stylesheets => ["application","prince"]
+                   :stylesheets => ["application","prince"],
                    :layout => "pdf"
           end
         end
